@@ -211,6 +211,8 @@ class HiveClimateEntity(HiveEntity, ClimateEntity):
 
             LOGGER.debug("Sending to {self._topic}/set message {payload}")
             await mqtt_client.async_publish(self.hass, self._topic + "/set", payload)
+            await sleep(0.5)
+            await mqtt_client.async_publish(self.hass, self._topic + "/set", payload)
         elif hvac_mode == HVACMode.OFF:
             if self.entity_description.model == MODEL_SLR2:
                 payload = (
